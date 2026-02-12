@@ -1,0 +1,38 @@
+domain_name: customer_signal_core
+version: 1.0.0
+display_name: Customer Signal Core
+description: >
+  Baseline cross-domain profile for customer-centric synthesis.
+layer_names:
+  - behavioral_velocity
+  - institutional_readiness
+  - economic_capacity
+  - trust_resilience
+weights:
+  - 0.30
+  - 0.25
+  - 0.25
+  - 0.20
+hierarchy:
+  behavioral_velocity: Micro
+  institutional_readiness: Macro
+  economic_capacity: Meso
+  trust_resilience: Meta
+thresholds:
+  detection: 0.42
+temporal_allowlist:
+  - linear
+  - memory
+  - s_curve
+interaction_rules:
+  default_mode: dynamic
+  default_override_mode: scale
+  min_value: 0.1
+  max_value: 2.0
+guardrails:
+  disclaimers:
+    - This signal is directional and not a deterministic forecast.
+  prohibited_actions:
+    - Presenting this output as legal, medical, or financial advice.
+  escalation_triggers:
+    - Sustained multi-layer degradation over consecutive windows.

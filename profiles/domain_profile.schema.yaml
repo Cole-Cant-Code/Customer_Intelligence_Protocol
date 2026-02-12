@@ -1,0 +1,90 @@
+# Canonical Domain Profile Schema (YAML Contract)
+title: CIP Mantic Domain Profile
+version: 1.0.0
+type: object
+required:
+  - domain_name
+  - version
+  - layer_names
+  - weights
+  - hierarchy
+  - thresholds
+  - temporal_allowlist
+  - interaction_rules
+  - guardrails
+properties:
+  domain_name:
+    type: string
+    pattern: "^[a-z][a-z0-9_-]{2,63}$"
+    description: Non-reserved domain identifier for generic_detect registration.
+  version:
+    type: string
+    pattern: "^\\d+\\.\\d+\\.\\d+$"
+  display_name:
+    type: string
+  description:
+    type: string
+  layer_names:
+    type: array
+    minItems: 3
+    maxItems: 6
+    uniqueItems: true
+    items:
+      type: string
+      pattern: "^[a-z][a-z0-9_]{1,63}$"
+  weights:
+    type: array
+    minItems: 3
+    maxItems: 6
+    items:
+      type: number
+      minimum: 0
+      maximum: 1
+    note: Must sum to exactly 1.0 and align 1:1 with layer_names.
+  hierarchy:
+    type: object
+    additionalProperties:
+      type: string
+      enum: [Micro, Meso, Macro, Meta]
+    note: Keys must match layer_names exactly.
+  thresholds:
+    type: object
+    required: [detection]
+    additionalProperties:
+      type: number
+      exclusiveMinimum: 0
+      exclusiveMaximum: 1
+  temporal_allowlist:
+    type: array
+    minItems: 1
+    items:
+      type: string
+      enum: [exponential, linear, logistic, s_curve, power_law, oscillatory, memory]
+  interaction_rules:
+    type: object
+    required: [default_mode, default_override_mode, min_value, max_value]
+    properties:
+      default_mode:
+        type: string
+        enum: [dynamic, base]
+      default_override_mode:
+        type: string
+        enum: [scale, replace]
+      min_value:
+        type: number
+        minimum: 0.1
+      max_value:
+        type: number
+        maximum: 2.0
+  guardrails:
+    type: object
+    properties:
+      disclaimers:
+        type: array
+        items: {type: string}
+      prohibited_actions:
+        type: array
+        items: {type: string}
+      escalation_triggers:
+        type: array
+        items: {type: string}

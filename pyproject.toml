@@ -1,0 +1,56 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "cip-mantic-core"
+version = "0.1.0"
+description = "Mantic-first MCP core for Customer Intelligence Protocol"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "fastmcp>=2.14,<3",
+    "pydantic>=2.8",
+    "pydantic-settings>=2.4",
+    "pyyaml>=6.0",
+    "mantic-thinking @ git+https://github.com/Cole-Cant-Code/mantic-thinking.git@v1.5.3",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0",
+    "pytest-asyncio>=0.24",
+    "pytest-cov>=5.0",
+    "ruff>=0.8",
+]
+
+[project.scripts]
+cip-core-server = "cip_core.server.main:run"
+
+[tool.hatch.metadata]
+allow-direct-references = true
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/cip_core"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+asyncio_mode = "auto"
+
+[tool.ruff]
+target-version = "py311"
+line-length = 100
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "N", "W", "UP", "B", "SIM", "RUF"]
+
+[tool.coverage.run]
+source = ["src/cip_core"]
+omit = ["*/tests/*", "*/conftest.py"]
+
+[tool.coverage.report]
+exclude_lines = [
+    "pragma: no cover",
+    "if TYPE_CHECKING:",
+    "raise NotImplementedError",
+]
