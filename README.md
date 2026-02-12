@@ -21,7 +21,7 @@ Call the `mantic_detect_emergence` tool with four layer scores (0-1):
 ```json
 {
   "layer_values": [0.75, 0.50, 0.60, 0.50],
-  "profile_name": "customer_signal_core",
+  "profile_name": "signal_core",
   "mode": "emergence"
 }
 ```
@@ -33,12 +33,12 @@ Get back a structured detection:
   "m_score": 0.60,
   "window_detected": true,
   "window_type": "FAVORABLE: Layers aligned above threshold",
-  "limiting_factor": "institutional_readiness",
+  "limiting_factor": "meso",
   "layer_attribution": {
-    "behavioral_velocity": 0.375,
-    "institutional_readiness": 0.208,
-    "economic_capacity": 0.250,
-    "trust_resilience": 0.167
+    "micro": 0.375,
+    "meso": 0.208,
+    "macro": 0.250,
+    "meta": 0.167
   },
   "layer_coupling": {
     "coherence": 0.80,
@@ -112,10 +112,10 @@ Running Mantic without an LLM gives you numbers. Running it with one gives you a
 
 | Layer | Signal | Value |
 |-------|--------|-------|
-| behavioral_velocity (Micro) | Breakneck startup pace, ignition milestones | 0.75 |
-| institutional_readiness (Macro) | NRC just starting fusion-specific rules, ITER delays | 0.50 |
-| economic_capacity (Meso) | Billions flowing, but no proven unit economics | 0.60 |
-| trust_resilience (Meta) | Climate urgency refreshed patience, but meme persists | 0.50 |
+| micro (Micro) | Breakneck startup pace, ignition milestones | 0.75 |
+| meso (Meso) | Billions flowing, but no proven unit economics | 0.60 |
+| macro (Macro) | NRC just starting fusion-specific rules, ITER delays | 0.50 |
+| meta (Meta) | Climate urgency refreshed patience, but meme persists | 0.50 |
 
 **Emergence detection result:**
 
@@ -124,12 +124,12 @@ Running Mantic without an LLM gives you numbers. Running it with one gives you a
   "m_score": 0.60,
   "window_detected": true,
   "window_type": "FAVORABLE: Layers aligned above threshold",
-  "limiting_factor": "institutional_readiness",
+  "limiting_factor": "meso",
   "layer_attribution": {
-    "behavioral_velocity": 0.375,
-    "institutional_readiness": 0.208,
-    "economic_capacity": 0.250,
-    "trust_resilience": 0.167
+    "micro": 0.375,
+    "meso": 0.208,
+    "macro": 0.250,
+    "meta": 0.167
   },
   "layer_coupling": { "coherence": 0.80 },
   "dominant": "Micro"
@@ -203,32 +203,32 @@ Mode-specific fields are surfaced inside `result` by the underlying detector. Co
 
 ---
 
-## Loaded Profile: `customer_signal_core`
+## Loaded Profile: `signal_core`
 
-| Layer | Hierarchy | Weight | What It Measures |
-|-------|-----------|--------|-----------------|
-| behavioral_velocity | Micro | 0.30 | Engagement speed, usage patterns, activity signals |
-| institutional_readiness | Macro | 0.25 | Org alignment, integration depth, process adoption |
-| economic_capacity | Meso | 0.25 | Budget health, spending trajectory, contract signals |
-| trust_resilience | Meta | 0.20 | Relationship durability, loyalty under stress |
+| Layer | Hierarchy | Weight | Definition |
+|-------|-----------|--------|------------|
+| micro | Micro | 0.30 | Individual actions or localized effects. |
+| meso | Meso | 0.25 | Group dynamics and regional coordination patterns. |
+| macro | Macro | 0.25 | System-wide aggregate effects. |
+| meta | Meta | 0.20 | Evolutionary change across time (paradigm or regime shifts). |
 
-This is the base profile. It's deliberately general — "customer signal" is a starting point, not a ceiling. The same kernel works for any domain. The profile sets the layer names, weights, thresholds, hierarchy mapping, and temporal allowlist.
+This is the base profile. It is deliberately general and domain-agnostic. The same kernel works for any domain. The profile sets the layer names, weights, thresholds, hierarchy mapping, and temporal allowlist. The analyst decides what Micro/Meso/Macro/Meta mean for the situation at hand, and provides that mapping in narration.
 
 ### Profile Example (YAML)
 
 ```yaml
-domain_name: customer_signal_core
-version: "1.0.0"
+domain_name: signal_core
+version: "2.0.0"
 layer_names:
-  - behavioral_velocity
-  - institutional_readiness
-  - economic_capacity
-  - trust_resilience
+  - micro
+  - meso
+  - macro
+  - meta
 weights:
-  behavioral_velocity: 0.30
-  institutional_readiness: 0.25
-  economic_capacity: 0.25
-  trust_resilience: 0.20
+  micro: 0.30
+  meso: 0.25
+  macro: 0.25
+  meta: 0.20
 thresholds:
   detection: 0.42
 temporal_allowlist:
@@ -356,7 +356,7 @@ Test defaults first. Tune second. Never assume first.
 
 ## Beyond the Base Profile
 
-The `customer_signal_core` profile ships as default. The kernel still works for any domain with multi-scale signals. The LLM decides what Micro/Meso/Macro/Meta mean for the situation.
+The `signal_core` profile ships as default. The kernel works for any domain with multi-scale signals. The analyst decides what Micro/Meso/Macro/Meta mean for the situation.
 
 | Domain | Micro | Meso | Macro | Meta |
 |--------|-------|------|-------|------|
@@ -475,4 +475,4 @@ The value is reducing repeated implementation mistakes across domains while keep
 
 ## Version
 
-0.1.0 — Initial release. Profile-based generic detection via MCP. Single bundled profile (`customer_signal_core`). SDK wrappers for downstream domain MCPs.
+0.1.0 — Initial release. Profile-based generic detection via MCP. Single bundled profile (`signal_core`). SDK wrappers for downstream domain MCPs.

@@ -1,6 +1,6 @@
 {
   "name": "CIP Mantic Core",
-  "description": "Mantic-first MCP core server for Customer Intelligence Protocol",
+  "description": "Mantic-first MCP core server for deterministic signal detection",
   "server": "src/cip_core/server/app.py:mcp",
   "transport": "streamable-http",
   "port": 8010

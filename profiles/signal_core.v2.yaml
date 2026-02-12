@@ -1,0 +1,41 @@
+domain_name: signal_core
+version: 2.0.0
+display_name: Signal Core
+description: >
+  Domain-agnostic base profile with four hierarchical layers:
+  individual actions, group dynamics, system-wide effects, and
+  evolutionary change. Domain-specific interpretation belongs in
+  narration, not in the profile.
+layer_names:
+  - micro
+  - meso
+  - macro
+  - meta
+weights:
+  - 0.30
+  - 0.25
+  - 0.25
+  - 0.20
+hierarchy:
+  micro: Micro
+  meso: Meso
+  macro: Macro
+  meta: Meta
+thresholds:
+  detection: 0.42
+temporal_allowlist:
+  - linear
+  - memory
+  - s_curve
+interaction_rules:
+  default_mode: dynamic
+  default_override_mode: scale
+  min_value: 0.1
+  max_value: 2.0
+guardrails:
+  disclaimers:
+    - This signal is directional and not a deterministic forecast.
+  prohibited_actions:
+    - Presenting this output as legal, medical, or financial advice.
+  escalation_triggers:
+    - Sustained multi-layer degradation over consecutive windows.

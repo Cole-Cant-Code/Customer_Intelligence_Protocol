@@ -24,12 +24,12 @@ async def test_list_domain_profiles_tool(app) -> None:
 
     assert payload["status"] == "ok"
     assert payload["count"] >= 1
-    assert payload["profiles"][0]["domain_name"] == "customer_signal_core"
+    assert payload["profiles"][0]["domain_name"] == "signal_core"
 
 
 @pytest.mark.asyncio
 async def test_validate_domain_profile_tool(app, profiles_dir) -> None:
-    valid_yaml = (profiles_dir / "customer_signal_core.v1.yaml").read_text(encoding="utf-8")
+    valid_yaml = (profiles_dir / "signal_core.v2.yaml").read_text(encoding="utf-8")
 
     valid = await app._tool_manager.call_tool(
         "validate_domain_profile",
@@ -48,7 +48,7 @@ async def test_validate_domain_profile_tool(app, profiles_dir) -> None:
 @pytest.mark.asyncio
 async def test_end_to_end_mantic_detection_tools(app) -> None:
     args = {
-        "profile_name": "customer_signal_core",
+        "profile_name": "signal_core",
         "layer_values": [0.62, 0.71, 0.45, 0.58],
     }
 
@@ -70,7 +70,7 @@ async def test_invalid_interaction_modes_return_validation_error(app) -> None:
     result = await app._tool_manager.call_tool(
         "mantic_detect",
         {
-            "profile_name": "customer_signal_core",
+            "profile_name": "signal_core",
             "layer_values": [0.62, 0.71, 0.45, 0.58],
             "mode": "friction",
             "interaction_mode": "invalid",

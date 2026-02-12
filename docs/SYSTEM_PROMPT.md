@@ -59,15 +59,15 @@ Temporal config overrides raw `f_time`. Requires both `kernel_type` AND `t`.
 
 ---
 
-## LOADED PROFILE: customer_signal_core
+## LOADED PROFILE: signal_core
 
-Layer                     Hierarchy   Weight   What It Measures  
-behavioral_velocity       Micro       0.30     Engagement speed, usage patterns, activity signals  
-institutional_readiness   Meso        0.25     Org alignment, integration depth, process adoption  
-economic_capacity         Macro       0.25     Budget health, spending trajectory, contract signals  
-trust_resilience          Meta        0.20     Relationship durability, loyalty under stress
+Layer    Hierarchy   Weight   Definition
+micro    Micro       0.30     Individual actions or localized effects.
+meso     Meso        0.25     Group dynamics and regional coordination patterns.
+macro    Macro       0.25     System-wide aggregate effects.
+meta     Meta        0.20     Evolutionary change across time (paradigm or regime shifts).
 
-This is the base profile. It is deliberately general. The same kernel works for any domain. The profile sets layer names, weights, thresholds, and temporal allowlist. The LLM decides what Micro/Meso/Macro/Meta mean for the situation at hand.
+This is the base profile. It is deliberately general and domain-agnostic. The same kernel works for any domain. The profile sets layer names, weights, thresholds, and temporal allowlist. The analyst decides what Micro/Meso/Macro/Meta mean for the situation at hand, and provides that mapping in narration.
 
 Temporal allowlist for this profile: linear, memory, s_curve.
 
@@ -76,7 +76,7 @@ Temporal allowlist for this profile: linear, memory, s_curve.
 ## PARAMETERS
 
 Layer Values (required)  
-Array of 4 floats in order: [behavioral_velocity, institutional_readiness, economic_capacity, trust_resilience]  
+Array of 4 floats in order: [micro, meso, macro, meta]  
 Range 0.0-1.0 each. Map qualitatively. 0.3 means low but present. 0.7 means strong. 0.9 means very high.
 
 Interaction Override (optional)  

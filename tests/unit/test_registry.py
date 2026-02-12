@@ -10,11 +10,11 @@ def test_registry_loads_profile_directory(profiles_dir) -> None:
     registry = DomainProfileRegistry.from_directory(profiles_dir)
     assert len(registry) == 1
     descriptor = registry.list()[0]
-    assert descriptor["domain_name"] == "customer_signal_core"
+    assert descriptor["domain_name"] == "signal_core"
 
 
 def test_registry_rejects_duplicate_registration(profiles_dir) -> None:
-    profile_path = profiles_dir / "customer_signal_core.v1.yaml"
+    profile_path = profiles_dir / "signal_core.v2.yaml"
     profile = load_profile_file(profile_path)
 
     registry = DomainProfileRegistry([profile])

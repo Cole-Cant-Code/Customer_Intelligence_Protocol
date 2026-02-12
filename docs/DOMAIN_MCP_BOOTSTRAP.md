@@ -22,7 +22,7 @@ from cip_core.sdk import DomainTranslator, detect_from_translator, load_registry
 registry = load_registry("profiles")
 result = detect_from_translator(
     registry=registry,
-    profile_name="customer_signal_core",
+    profile_name="signal_core",
     translator=my_translator,
     raw_context=context,
     mode="friction",

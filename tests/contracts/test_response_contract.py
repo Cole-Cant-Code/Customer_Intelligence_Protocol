@@ -8,7 +8,7 @@ async def test_detection_response_contract_shape(app) -> None:
     result = await app._tool_manager.call_tool(
         "mantic_detect",
         {
-            "profile_name": "customer_signal_core",
+            "profile_name": "signal_core",
             "layer_values": [0.6, 0.6, 0.6, 0.6],
             "mode": "friction",
         },

@@ -19,7 +19,7 @@ def test_detect_from_translator_runs_detection(profiles_dir) -> None:
 
     result = detect_from_translator(
         registry=registry,
-        profile_name="customer_signal_core",
+        profile_name="signal_core",
         translator=translator,
         raw_context={"layer_values": [0.62, 0.71, 0.45, 0.58]},
         mode="friction",
@@ -36,7 +36,7 @@ def test_detect_from_translator_passes_f_time(profiles_dir) -> None:
 
     result = detect_from_translator(
         registry=registry,
-        profile_name="customer_signal_core",
+        profile_name="signal_core",
         translator=translator,
         raw_context={"layer_values": [0.62, 0.71, 0.45, 0.58]},
         mode="emergence",

@@ -8,7 +8,7 @@ from cip_core.mantic.runtime import run_detection
 
 
 def _profile(profiles_dir):
-    return load_profile_file(profiles_dir / "customer_signal_core.v1.yaml")
+    return load_profile_file(profiles_dir / "signal_core.v2.yaml")
 
 
 def test_run_detection_returns_contract_envelope(profiles_dir) -> None:
