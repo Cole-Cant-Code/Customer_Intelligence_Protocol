@@ -37,7 +37,13 @@ def create_app(
     """Create and configure the Mantic-first MCP server."""
     settings = get_settings()
 
-    profile_dir = Path(profiles_dir_override or settings.cip_profiles_dir)
+    raw_dir = Path(profiles_dir_override or settings.cip_profiles_dir)
+    # Anchor relative paths to the project root (alongside pyproject.toml)
+    if not raw_dir.is_absolute():
+        project_root = Path(__file__).resolve().parent.parent.parent.parent
+        profile_dir = project_root / raw_dir
+    else:
+        profile_dir = raw_dir
     if profile_registry_override is not None:
         registry = profile_registry_override
     else:
