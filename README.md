@@ -469,6 +469,7 @@ The value is reducing repeated implementation mistakes across domains while keep
 - [`docs/DOMAIN_PROFILE_SPEC.md`](docs/DOMAIN_PROFILE_SPEC.md) — Profile contract specification
 - [`docs/DOMAIN_MCP_BOOTSTRAP.md`](docs/DOMAIN_MCP_BOOTSTRAP.md) — Guide for building domain MCPs on this core
 - [`docs/RELEASE_GOVERNANCE.md`](docs/RELEASE_GOVERNANCE.md) — Versioning and release policy
+- [`docs/SYSTEM_PROMPT.md`](docs/SYSTEM_PROMPT.md) — Optional system prompt for model-side usage conventions
 
 ---
 
